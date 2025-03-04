@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Primera Parcial</title>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <header class="encabezado">
+        <div id="logo">
+            <img src="images/logo_ucol.png">
+        </div>
+        
+    </header>
+    <nav>
+        <ul>
+            <li>
+                <a href="index.html">Inicio</a>
+            </li>
+            <li>
+                <a href="listado.html">Alumnos</a>
+            </li>
+            <li>
+                <a href="#">Pagos</a>
+            </li>
+            <li>
+                <a href="#">Calendario</a>
+            </li>
+            <li>
+                <a href="#" >Contacto</a>
+            </li>
+        </ul>
+    </nav>
+    <nav class="nav_verde"></nav>
+    <main>
+        <section>
+            <div class="head-title">
+                <h1 class="bienvenida">Pendientes de pago</h1>
+            </div>
+            <div class="lista_estilo">
+                <ul >
+                    <li>MARQUEZ LARIOS NATHAN AARON</li>
+                    <li>CASTILLO ESPINOSA VALENTINA</li>
+                    <li>LOBATO MEZA IAN SAMALEV</li>
+                    <li>COBARRUBIAS MERLO ADRIAN FELIPE</li>
+                    <li>PINEDA ALDACO JUANA VALERIA</li>
+                    <li>HERNANDEZ CRUZ JOSETTE MARLET</li>
+                    <li>RIOS MARTINEZ CARLA JAZMIN</li>
+                    <li>CALVA GARCIA LUIS ARMANDO</li>
+                    <li>CEJA COVARRUBIAS JUAN PABLO</li>
+                    <li>TORRES CAMPOS MARIELA GUADALUPE</li>
+
+                </ul>
+            </div>
+            <div id="boton_listado">
+                <a href="index.html" class="boton_enviar">Regresar</a>
+                <!--button onclick="enviarDatos();" class="boton_enviar">Mostrar Datos</button-->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div>
+            <p>
+                Derechos reservados 2025 
+            </p>
+        </div>
+        <div>
+            <p>
+                Examen de la primera parcial de Programación Web 
+            </p>
+        </div>
+    </footer>
+    <script>
+      const baseURL = "https://al.ucol.mx/api";
+const parametros = "709000/k802/4/G/";
+const token = {
+    "token":"ASISTENCIAS-b8c9260b5d26ad5cf838020499fd4895"
+};
+
+async function enviarDatos() {
+    try {
+        const response = await fetch(`${baseURL}/${parametros}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(token)
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error en la petición: ${response.status} ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        console.log("Respuesta del servidor:", data);
+    } catch (error) {
+        console.error("Error al hacer la solicitud:", error);
+    }
+}
+
+// Llamar a la función para hacer la solicitud
+enviarDatos();
+
+    </script>
+</body>
+</html>
